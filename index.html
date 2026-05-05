@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Student Result Calculator</h2>
+
+    <input type="number" id="m1" placeholder="Subject 1"><br><br>
+    <input type="number" id="m2" placeholder="Subject 2"><br><br>
+    <input type="number" id="m3" placeholder="Subject 3"><br><br>
+    <input type="number" id="m4" placeholder="Subject 4"><br><br>
+    <input type="number" id="m5" placeholder="Subject 5"><br><br>
+    <input type="number" id="m6" placeholder="Subject 6"><br><br>
+    <input type="number" id="m7" placeholder="Subject 7"><br><br>
+    <input type="number" id="m8" placeholder="Subject 8"><br><br>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <p id="total"></p>
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+
+    <hr>
+
+    <h2>Calculator using if/else</h2>
+
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+
+    <br><br>
+
+    <button onclick="calculate('+')">Add</button>
+    <button onclick="calculate('-')">Subtract</button>
+    <button onclick="calculate('*')">Multiply</button>
+    <button onclick="calculate('/')">Divide</button>
+
+    <h3 id="calcResult">Result: </h3>
+
+    <hr>
+
+    <h2>jQuery Animation</h2>
+    <button id="animateBtn">Animate</button>
+    <div id="animationArea">
+        <div id="box"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="animation.js"></script>
+</body>
+</html>
