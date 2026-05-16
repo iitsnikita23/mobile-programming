@@ -1,0 +1,91 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full Page Background (Animated) */
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+
+    background: linear-gradient(270deg, #00c6ff, #0072ff, #8e2de2, #4facfe);
+    background-size: 800% 800%;
+    animation: bgMove 10s ease infinite;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Animation */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Heading */
+h1 {
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Balance Box */
+h2 {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 25px;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Inputs */
+input {
+    width: 250px;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
+    background: white;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+button:hover {
+    transform: scale(1.1);
+    background: black;
+    color: white;
+}
+
+/* Active Click Effect */
+button:active {
+    transform: scale(0.95);
+}
+
+/* Balance Number Highlight */
+#balance {
+    color: #00ffcc;
+    font-weight: bold;
+}
