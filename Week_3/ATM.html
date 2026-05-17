@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank System</title>
+    <link rel="stylesheet" href="ATM.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simple Bank System</h1>
+
+        <div class="balance-box">
+            <h2>
+                Balance: Rs. 
+                <span id="balance" class="hidden">10000</span>
+                <span id="hiddenText">******</span>
+            </h2>
+            <span id="eyeIcon" class="eye">👁️</span>
+        </div>
+
+        <div class="actions">
+            <button id="showDeposit">Deposit</button>
+            <button id="showWithdraw">Withdraw</button>
+        </div>
+
+        <div id="inputSection" class="hidden">
+            <input type="number" id="amount" placeholder="Enter amount">
+            <br><br>
+            <button id="depositBtn">Confirm Deposit</button>
+            <button id="withdrawBtn">Confirm Withdraw</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ATM.js"></script>
+</body>
+</html>
