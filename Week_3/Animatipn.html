@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Animation</title>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    .container{
+      width: 500px;
+      height: 400px;
+      border: 2px solid black;
+      position: relative;
+    }
+
+    .box{
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    button{
+      margin-top: 20px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="box"></div>
+</div>
+
+<button id="btn">Start Animation</button>
+
+<script>
+
+$("#btn").click(function(){
+
+  $(".box").animate({
+    top: "300px"
+  },1000,function(){
+
+    $(this).css("background","blue");
+
+    $(this).animate({
+      left: "400px"
+    },1000,function(){
+
+      $(this).css("background","green");
+
+      $(this).animate({
+        top: "0px"
+      },1000,function(){
+
+        $(this).css("background","orange");
+
+        $(this).animate({
+          left: "0px"
+        },1000,function(){
+
+          $(this).css("background","red");
+
+        });
+
+      });
+
+    });
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
