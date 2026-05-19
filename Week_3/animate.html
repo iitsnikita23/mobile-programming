@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moving Color Box using Callback Function</title>
+
+    <style>
+        body{
+            margin:0;
+            height:100vh;
+            background:white;
+            overflow:hidden;
+            position:relative;
+        }
+
+        .box{
+            width:100px;
+            height:100px;
+            position:absolute;
+            top:0;
+            left:0;
+            border:2px solid black;
+            background:red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box" id="box"></div>
+
+<script>
+
+    const box = document.getElementById("box");
+
+    let positions = [
+        { top: 0, left: 0, color: "red" }, // Left Top
+        { top: window.innerHeight - 100, left: window.innerWidth - 100, color: "blue" }, // Right Bottom
+        { top: window.innerHeight - 100, left: 0, color: "green" }, // Left Bottom
+        { top: 0, left: window.innerWidth - 100, color: "orange" } // Right Top
+    ];
+
+    let index = 0;
+
+    function moveBox(callback){
+
+        box.style.transition = "all 2s linear";
+
+        box.style.top = positions[index].top + "px";
+        box.style.left = positions[index].left + "px";
+        box.style.background = positions[index].color;
+
+        index++;
+
+        if(index >= positions.length){
+            index = 0;
+        }
+
+        setTimeout(callback, 2000);
+    }
+
+    function startAnimation(){
+        moveBox(startAnimation);
+    }
+
+    startAnimation();
+
+</script>
+
+</body>
+</html>
