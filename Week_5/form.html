@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCart — Realtime DB Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <header class="app-head">
+      <div>
+        <h1>Realtime DB Console</h1>
+        <p class="sub">Create, read, update and delete users in <span class="mono">smartcart</span></p>
+      </div>
+      <span class="badge"><span id="user-count">0</span> users</span>
+    </header>
+
+    <!-- CREATE -->
+    <section class="card" id="create">
+      <h2>Add a user</h2>
+      <div class="fields">
+        <input type="text" id="create-id" placeholder="User ID" />
+        <input type="text" id="create-name" placeholder="Name" />
+        <input type="email" id="create-email" placeholder="Email" />
+      </div>
+      <div class="actions">
+        <button class="btn-primary" onclick="writeUserData()">Save user</button>
+      </div>
+    </section>
+
+    <!-- READ -->
+    <section class="card" id="read">
+      <h2>Look up a user</h2>
+      <div class="fields">
+        <input type="text" id="read-id" placeholder="User ID" />
+      </div>
+      <div class="actions">
+        <button class="btn-ghost" onclick="readUserById()">Find user</button>
+      </div>
+      <p id="read-result"></p>
+    </section>
+
+    <!-- UPDATE -->
+    <section class="card" id="update">
+      <h2>Edit a user</h2>
+      <div class="fields">
+        <input type="text" id="update-id" placeholder="User ID" />
+      </div>
+      <div class="actions" style="margin-bottom:14px">
+        <button class="btn-ghost" onclick="fetchUserForUpdate()">Load into form</button>
+      </div>
+      <div class="fields">
+        <input type="text" id="update-name" placeholder="New name" />
+        <input type="email" id="update-email" placeholder="New email" />
+      </div>
+      <div class="actions">
+        <button class="btn-primary" onclick="updateUserData()">Save changes</button>
+      </div>
+    </section>
+
+    <!-- DELETE -->
+    <section class="card" id="delete">
+      <h2>Remove a user</h2>
+      <div class="fields">
+        <input type="text" id="delete-id" placeholder="User ID" />
+      </div>
+      <div class="actions">
+        <button class="btn-danger" onclick="deleteUserData()">Delete user</button>
+      </div>
+    </section>
+
+    <!-- LIVE LIST -->
+    <section class="card" id="list">
+      <h2>All users <span class="muted" style="font-weight:400;font-size:.8rem">(live)</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="users-body">
+            <tr><td colspan="4" class="muted center">Connecting…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="personal.css" />
+</head>
+<body>
+  <div class="card">
+
+    <div class="head">
+      <div class="avatar">&#9786;</div>
+      <h1>Your details</h1>
+      <p>Please fill in your information below</p>
+    </div>
+
+    <div class="body">
+      <div id="banner" class="banner"></div>
+
+      <div id="form">
+        <div class="grid">
+
+          <div class="field full">
+            <label for="fullName">Full name <span class="req">*</span></label>
+            <input type="text" id="fullName" placeholder="Your full name" />
+            <div class="err" id="fullName-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="fatherName">Father's name <span class="req">*</span></label>
+            <input type="text" id="fatherName" placeholder="Father's name" />
+            <div class="err" id="fatherName-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="motherName">Mother's name <span class="req">*</span></label>
+            <input type="text" id="motherName" placeholder="Mother's name" />
+            <div class="err" id="motherName-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@example.com" />
+            <div class="err" id="email-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="phone" placeholder="+977 98XXXXXXXX" />
+            <div class="err" id="phone-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob" />
+            <div class="err" id="dob-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="">Select</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select>
+            <div class="err" id="gender-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="Street / area" />
+            <div class="err" id="address-err"></div>
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="Your city" />
+            <div class="err" id="city-err"></div>
+          </div>
+
+          <div class="field full">
+            <label for="message">Message / note</label>
+            <textarea id="message" placeholder="Anything you'd like to add (optional)"></textarea>
+            <div class="err" id="message-err"></div>
+          </div>
+
+        </div>
+
+        <p id="edit-note" class="edit-note" style="display:none">You're editing an existing record.</p>
+        <div class="btn-row">
+          <button type="button" id="submit-btn">Submit</button>
+          <button type="button" id="cancel-edit" style="display:none">Cancel edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRUD: live list of all submitted records -->
+  <div class="card list-card">
+    <div class="list-head">
+      <h2>Saved records <span class="pill"><span id="count">0</span></span></h2>
+      <p>Live list — edit or delete any entry.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Father's name</th><th>Email</th><th>City</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td colspan="5" class="empty">Connecting…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module" src="personal.js"></script>
+</body>
+</html>

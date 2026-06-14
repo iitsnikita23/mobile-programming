@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — SmartCart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body>
+  <div class="contact-card">
+
+    <!-- LEFT: brand / reassurance panel -->
+    <aside class="panel">
+      <p class="eyebrow">SmartCart</p>
+      <h1>Get in touch with our team</h1>
+      <p>Questions about an order, a partnership, or just want to say hello? Fill out the form and we'll reply within one business day.</p>
+
+      <div class="info">
+        <div class="info-item">
+          <span class="dot">@</span>
+          <div><span class="label">Email</span><span class="value">support@smartcart.app</span></div>
+        </div>
+        <div class="info-item">
+          <span class="dot">#</span>
+          <div><span class="label">Phone</span><span class="value">+977 1 555 0123</span></div>
+        </div>
+        <div class="info-item">
+          <span class="dot">&#9679;</span>
+          <div><span class="label">Office</span><span class="value">Kathmandu, Nepal</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: the 10-field form -->
+    <section class="form-area">
+      <h2>Send us a message</h2>
+      <p class="lede">All fields marked <span style="color:#c8453b">*</span> are required.</p>
+
+      <div id="form-banner" class="banner"></div>
+
+      <div id="contact-form">
+        <div class="grid">
+
+          <!-- 1. First name -->
+          <div class="field">
+            <label for="firstName">First name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="Nikita" />
+            <div class="err" id="firstName-err"></div>
+          </div>
+
+          <!-- 2. Last name -->
+          <div class="field">
+            <label for="lastName">Last name <span class="req">*</span></label>
+            <input type="text" id="lastName" placeholder="Sharma" />
+            <div class="err" id="lastName-err"></div>
+          </div>
+
+          <!-- 3. Email -->
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@example.com" />
+            <div class="err" id="email-err"></div>
+          </div>
+
+          <!-- 4. Phone -->
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="+977 98XXXXXXXX" />
+            <div class="err" id="phone-err"></div>
+          </div>
+
+          <!-- 5. Company -->
+          <div class="field">
+            <label for="company">Company / organization</label>
+            <input type="text" id="company" placeholder="Optional" />
+            <div class="err" id="company-err"></div>
+          </div>
+
+          <!-- 6. Country -->
+          <div class="field">
+            <label for="country">Country <span class="req">*</span></label>
+            <select id="country">
+              <option value="">Select a country</option>
+              <option>Nepal</option>
+              <option>India</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Australia</option>
+              <option>Canada</option>
+              <option>Other</option>
+            </select>
+            <div class="err" id="country-err"></div>
+          </div>
+
+          <!-- 7. Inquiry type -->
+          <div class="field">
+            <label for="inquiryType">Inquiry type <span class="req">*</span></label>
+            <select id="inquiryType">
+              <option value="">Choose one</option>
+              <option>General question</option>
+              <option>Sales</option>
+              <option>Technical support</option>
+              <option>Billing</option>
+              <option>Partnership</option>
+              <option>Other</option>
+            </select>
+            <div class="err" id="inquiryType-err"></div>
+          </div>
+
+          <!-- 8. Subject -->
+          <div class="field">
+            <label for="subject">Subject <span class="req">*</span></label>
+            <input type="text" id="subject" placeholder="How can we help?" />
+            <div class="err" id="subject-err"></div>
+          </div>
+
+          <!-- 9. Preferred contact method -->
+          <div class="field full">
+            <label>Preferred contact method</label>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="Email" checked /> Email</label>
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="Phone" /> Phone</label>
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="Either" /> Either</label>
+            </div>
+            <div class="err" id="contactMethod-err"></div>
+          </div>
+
+          <!-- 10. Message -->
+          <div class="field full">
+            <label for="message">Message <span class="req">*</span></label>
+            <textarea id="message" maxlength="1000" placeholder="Tell us a bit more…"></textarea>
+            <div class="err" id="message-err"></div>
+          </div>
+
+          <!-- Consent -->
+          <div class="field full">
+            <label class="consent">
+              <input type="checkbox" id="consent" />
+              I agree to be contacted about my message and accept the privacy policy.
+            </label>
+            <div class="err" id="consent-err"></div>
+          </div>
+
+        </div>
+
+        <div class="form-foot">
+          <span class="char-count" id="char-count">0 / 1000</span>
+          <button type="button" id="submit-btn">Send message</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="contact.js"></script>
+</body>
+</html>
