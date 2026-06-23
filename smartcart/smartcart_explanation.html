@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartCart — Complete Code & Project Explanation</title>
+  <style>
+    body {
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 30px;
+    }
+    h1 { font-size: 24pt; color: #0D47A1; border-bottom: 3px solid #0D47A1; padding-bottom: 8px; margin-top: 30px; }
+    h2 { font-size: 16pt; color: #1A66D9; border-bottom: 1.5px solid #1A66D9; padding-bottom: 4px; margin-top: 28px; }
+    h3 { font-size: 13pt; color: #0F2238; margin-top: 20px; }
+    h4 { font-size: 12pt; color: #1A66D9; margin-top: 16px; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10pt;
+      background: #f0f4ff;
+      border: 1px solid #cdd9f5;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10pt;
+      background: #f0f4ff;
+      border: 1px solid #cdd9f5;
+      border-left: 4px solid #1A66D9;
+      border-radius: 4px;
+      padding: 14px 16px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 10px 0 16px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 14px 0 20px 0;
+      font-size: 11pt;
+    }
+    th {
+      background: #1A66D9;
+      color: white;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: bold;
+    }
+    td {
+      border: 1px solid #cdd9f5;
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f5f8ff; }
+    .note {
+      background: #E4EEFC;
+      border-left: 4px solid #1A66D9;
+      padding: 10px 16px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 11pt;
+    }
+    .algorithm-box {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #E08A00;
+      border-radius: 4px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10pt;
+      white-space: pre;
+    }
+    ul, ol { margin: 8px 0 14px 0; padding-left: 26px; }
+    li { margin-bottom: 5px; }
+    p { margin: 8px 0; }
+    .section-divider { border: none; border-top: 2px dashed #cdd9f5; margin: 30px 0; }
+    .toc-entry { margin: 4px 0; }
+    .toc-entry a { color: #1A66D9; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<h1>SmartCart — Complete Code &amp; Project Explanation</h1>
+
+<p><strong>App:</strong> SmartCart — Anti-scam shopping guardian for Nepal<br/>
+<strong>Platform:</strong> React Native (Expo) — runs on Android, iOS, and Web<br/>
+<strong>Language:</strong> JavaScript (JSX)<br/>
+<strong>Bilingual:</strong> Nepali (default) + English</p>
+
+<hr class="section-divider"/>
+
+<h2>Table of Contents</h2>
+<div class="toc-entry">1. Is HTML Used?</div>
+<div class="toc-entry">2. Full Project Structure</div>
+<div class="toc-entry">3. index.js — Entry Point</div>
+<div class="toc-entry">4. App.js — Section by Section</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.1 Imports &amp; React Hooks</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.2 Firebase Setup</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.3 authError() — Bilingual Error Messages</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.4 timeAgo() — Relative Timestamps</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.5 Theme Colors &amp; Shadows</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.6 Icon Component</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.7 Translations (STR object)</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.8 Scam Detection Algorithm — detectRisk()</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.9 Conversational Helper — getReply()</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.10 Learn Content (LESSONS)</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.11 Screen Components</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.12 TabBar Navigation</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.13 App Root — Main Logic</div>
+<div class="toc-entry">&nbsp;&nbsp;&nbsp;&nbsp;4.14 StyleSheet</div>
+<div class="toc-entry">5. Algorithm Summary (Visual)</div>
+<div class="toc-entry">6. Key Technical Decisions</div>
+
+<hr class="section-divider"/>
+
+<h2>1. Is HTML Used?</h2>
+
+<p>
+<strong>No HTML files exist in SmartCart.</strong> It is a <strong>React Native</strong> app.
+However, React Native uses <strong>JSX</strong> — a syntax that <em>looks</em> like HTML but compiles to
+native mobile UI components, not web pages.
+</p>
+
+<table>
+  <tr><th>JSX in React Native</th><th>Equivalent in HTML</th><th>What it renders to</th></tr>
+  <tr><td><code>&lt;View&gt;</code></td><td><code>&lt;div&gt;</code></td><td>Native container box</td></tr>
+  <tr><td><code>&lt;Text&gt;</code></td><td><code>&lt;p&gt;</code> or <code>&lt;span&gt;</code></td><td>Native text label</td></tr>
+  <tr><td><code>&lt;TextInput&gt;</code></td><td><code>&lt;input&gt;</code></td><td>Native text field</td></tr>
+  <tr><td><code>&lt;TouchableOpacity&gt;</code></td><td><code>&lt;button&gt;</code></td><td>Tappable button (fades on press)</td></tr>
+  <tr><td><code>&lt;ScrollView&gt;</code></td><td>Scrollable <code>&lt;div&gt;</code></td><td>Native scrollable list</td></tr>
+  <tr><td><code>&lt;SafeAreaView&gt;</code></td><td>(no equivalent)</td><td>Avoids phone notch/status bar</td></tr>
+</table>
+
+<div class="note">
+  <strong>Note:</strong> The file <code>src/global.css</code> exists only for the <strong>web</strong> build of the app
+  (when opened in a browser). For Android/iOS, zero CSS is used — all styling is done via
+  JavaScript objects using <code>StyleSheet.create(...)</code>.
+</div>
+
+<hr class="section-divider"/>
+
+<h2>2. Full Project Structure</h2>
+
+<pre>smartcart/
+│
+├── App.js              ← THE ENTIRE APP (1343 lines, all 6 screens)
+├── index.js            ← Entry point: registers App as root component
+├── app.json            ← Expo configuration (name, icons, splash, plugins)
+├── package.json        ← Dependencies list
+├── tsconfig.json       ← TypeScript config (not used inside App.js)
+│
+├── assets/
+│   └── images/         ← App icons, splash screen images, tab icons
+│       ├── icon.png
+│       ├── splash-icon.png
+│       ├── android-icon-*.png
+│       └── ...
+│
+├── src/                ← Supporting components (NOT imported by App.js)
+│   ├── components/
+│   │   ├── animated-icon.tsx       ← Animated splash logo (mobile)
+│   │   ├── animated-icon.web.tsx   ← Same, for web
+│   │   ├── app-tabs.tsx            ← Expo Router tabs (mobile)
+│   │   ├── app-tabs.web.tsx        ← Same, for web
+│   │   ├── external-link.tsx       ← Opens URLs in browser
+│   │   ├── hint-row.tsx            ← Title + code hint display
+│   │   ├── themed-text.tsx         ← Text with 8 style variants
+│   │   ├── themed-view.tsx         ← View with dynamic bg color
+│   │   ├── web-badge.tsx           ← Expo version badge
+│   │   └── ui/collapsible.tsx      ← Expand/collapse section
+│   ├── constants/
+│   │   └── theme.ts                ← Colors, fonts, spacing
+│   ├── hooks/
+│   │   ├── use-color-scheme.ts     ← Re-exports RN useColorScheme
+│   │   ├── use-color-scheme.web.ts ← Hydration-safe web version
+│   │   └── use-theme.ts            ← Returns color set for current theme
+│   └── global.css                  ← Web-only font-face definitions
+│
+└── scripts/
+    └── reset-project.js            ← Resets project to blank Expo starter</pre>
+
+<div class="note">
+  <strong>Key insight:</strong> <code>App.js</code> is completely <strong>self-contained</strong>.
+  The entire working app — all 6 screens, all logic, all styles, all icons — lives in that single file.
+  The <code>src/</code> folder is a boilerplate scaffold from Expo that <code>App.js</code> does <strong>not</strong> import.
+</div>
+
+<hr class="section-divider"/>
+
+<h2>3. index.js — Entry Point</h2>
+
+<pre>import { registerRootComponent } from "expo";
+import App from "./App";
+
+registerRootComponent(App);</pre>
+
+<p>
+This is the very first file that runs when the app launches.
+<code>registerRootComponent(App)</code> tells Expo:
+"This is the top-level component. Display it when the app opens."
+It sets up the native environment correctly on both iOS and Android so that
+<code>App</code> (from <code>App.js</code>) appears as the starting screen.
+</p>
+
+<hr class="section-divider"/>
+
+<h2>4. App.js — Section by Section</h2>
+
+<h3>4.1 Imports &amp; React Hooks (Lines 17–31)</h3>
+
+<pre>import React, { useState, useMemo, useRef, useEffect } from 'react';
+import {
+  SafeAreaView, View, Text, ScrollView, TextInput,
+  TouchableOpacity, StyleSheet, StatusBar, Platform,
+  KeyboardAvoidingView, Linking, ActivityIndicator,
+} from 'react-native';</pre>
+
+<h4>React Hooks Used</h4>
+<table>
+  <tr><th>Hook</th><th>Purpose in SmartCart</th></tr>
+  <tr><td><code>useState</code></td><td>Stores screen data: input text, results, messages, login mode, busy states</td></tr>
+  <tr><td><code>useMemo</code></td><td>Caches the translation object — only recalculates when language changes</td></tr>
+  <tr><td><code>useRef</code></td><td>Holds the chat ScrollView reference to programmatically scroll to the bottom</td></tr>
+  <tr><td><code>useEffect</code></td><td>Runs side effects: Firebase auth listener on mount, Firebase database listener</td></tr>
+</table>
+
+<h4>React Native Components Used</h4>
+<table>
+  <tr><th>Component</th><th>Role in the App</th></tr>
+  <tr><td><code>SafeAreaView</code></td><td>Wraps screens to avoid phone notch and status bar overlap</td></tr>
+  <tr><td><code>View</code></td><td>Container box (equivalent to a &lt;div&gt; in HTML)</td></tr>
+  <tr><td><code>Text</code></td><td>Displays text on screen</td></tr>
+  <tr><td><code>ScrollView</code></td><td>Scrollable content area for screens longer than the screen</td></tr>
+  <tr><td><code>TextInput</code></td><td>Text field for user input (scam checker, chat, forms)</td></tr>
+  <tr><td><code>TouchableOpacity</code></td><td>Tappable button that visually fades slightly when pressed</td></tr>
+  <tr><td><code>StyleSheet</code></td><td>Creates performance-optimized style objects (like CSS but in JS)</td></tr>
+  <tr><td><code>StatusBar</code></td><td>Controls the color of the phone's top status bar</td></tr>
+  <tr><td><code>Platform</code></td><td>Detects iOS vs Android to apply platform-specific styles</td></tr>
+  <tr><td><code>KeyboardAvoidingView</code></td><td>Pushes screen content up automatically when keyboard opens</td></tr>
+  <tr><td><code>Linking</code></td><td>Opens the phone dialer (<code>tel:</code>) or email app (<code>mailto:</code>)</td></tr>
+  <tr><td><code>ActivityIndicator</code></td><td>Spinning loading spinner (shown during Firebase operations)</td></tr>
+</table>
+
+<hr/>
+
+<h3>4.2 Firebase Setup (Lines 45–83)</h3>
+
+<pre>import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  updateProfile } from 'firebase/auth';
+import { getDatabase, ref as dbRef, push, query,
+  limitToLast, onValue } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyC6NXJDSCI6FsuH_E1oOeoQUsIYe9hXLjk',
+  authDomain: 'smartcart-6cea7.firebaseapp.com',
+  databaseURL: 'https://smartcart-6cea7-default-rtdb.firebaseio.com',
+  projectId: 'smartcart-6cea7',
+  // ...
+};
+
+let auth = null;
+let db = null;
+try {
+  const fbApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+  auth = getAuth(fbApp);
+  db = getDatabase(fbApp);
+} catch (e) {
+  console.warn('Firebase unavailable, running in local mode:', e.message);
+}</pre>
+
+<p><strong>What each part does:</strong></p>
+<ul>
+  <li><code>getApps().length ? getApp() : initializeApp(...)</code> — Prevents double-initialization.
+    If Firebase is already running (e.g., during hot reload), reuses the existing instance instead of creating a duplicate and crashing.</li>
+  <li>The entire block is in a <code>try/catch</code> — if Firebase fails (no internet, bad config, missing package),
+    the app continues in <strong>local/guest mode</strong> instead of crashing.</li>
+  <li><code>auth</code> and <code>db</code> start as <code>null</code>. Every screen checks <code>if (!auth)</code>
+    or <code>if (!db)</code> before calling Firebase, so the app always works safely.</li>
+</ul>
+
+<h4>Firebase Functions Used</h4>
+<table>
+  <tr><th>Function</th><th>What it does</th></tr>
+  <tr><td><code>createUserWithEmailAndPassword</code></td><td>Creates a new user account in Firebase Auth</td></tr>
+  <tr><td><code>signInWithEmailAndPassword</code></td><td>Logs in with email + password</td></tr>
+  <tr><td><code>signOut</code></td><td>Logs out the current user</td></tr>
+  <tr><td><code>onAuthStateChanged</code></td><td>Listener — fires when user logs in or out (persistent session)</td></tr>
+  <tr><td><code>updateProfile</code></td><td>Sets the display name after signup</td></tr>
+  <tr><td><code>getDatabase / dbRef</code></td><td>Gets a reference to a Firebase Realtime Database path</td></tr>
+  <tr><td><code>push</code></td><td>Adds a new item to a database list (auto-generates a unique key)</td></tr>
+  <tr><td><code>query / limitToLast</code></td><td>Fetches only the last N items from the database</td></tr>
+  <tr><td><code>onValue</code></td><td>Real-time listener — fires every time data changes in the database</td></tr>
+</table>
+
+<hr/>
+
+<h3>4.3 authError() — Bilingual Error Messages (Lines 86–100)</h3>
+
+<pre>function authError(code, lang) {
+  const m = {
+    'auth/invalid-email':       { en: 'That email address looks invalid.', np: 'इमेल ठेगाना मिलेन।' },
+    'auth/email-already-in-use':{ en: 'This email already has an account.', np: 'यो इमेलमा खाता छ।' },
+    'auth/weak-password':       { en: 'Password must be at least 6 characters.', np: 'पासवर्ड ६ अक्षरको हुनुपर्छ।' },
+    'auth/wrong-password':      { en: 'Email or password is incorrect.', np: 'इमेल वा पासवर्ड मिलेन।' },
+    'auth/user-not-found':      { en: 'No account found — try signing up.', np: 'खाता भेटिएन।' },
+    // ...more codes
+  };
+  return (m[code] &amp;&amp; m[code][lang]) || fallbackMessage;
+}</pre>
+
+<p>
+<strong>Algorithm:</strong> A lookup table maps Firebase error codes to human-readable messages in both languages.
+The expression <code>m[code] &amp;&amp; m[code][lang]</code> safely looks up the code, then the language.
+If neither exists, it falls back to a generic "Something went wrong" message.
+Called in the Login screen's <code>catch(e)</code> block as <code>authError(e.code, lang)</code>.
+</p>
+
+<hr/>
+
+<h3>4.4 timeAgo() — Relative Timestamps (Lines 103–112)</h3>
+
+<pre>function timeAgo(ts, lang) {
+  if (!ts) return '';
+  const s = Math.max(0, (Date.now() - ts) / 1000); // elapsed seconds
+  if (s &lt; 60)  return lang === 'np' ? 'अहिले' : 'now';
+  const mnt = Math.floor(s / 60);
+  if (mnt &lt; 60) return mnt + 'm';           // e.g. "5m"
+  const h = Math.floor(mnt / 60);
+  if (h &lt; 24)  return h + 'h';             // e.g. "3h"
+  return Math.floor(h / 24) + 'd';          // e.g. "2d"
+}</pre>
+
+<p>
+Converts a Unix timestamp (milliseconds since 1970) into a short "time ago" label.
+Used in the Community Reports screen to show how old each report is.
+<code>Date.now()</code> gives the current time in milliseconds.
+Subtracting the stored timestamp gives elapsed time, which is then bucketed into seconds, minutes, hours, or days.
+</p>
+
+<hr/>
+
+<h3>4.5 Theme Colors &amp; Shadows (Lines 117–138)</h3>
+
+<pre>const C = {
+  bg:           '#F2F7FD', // soft blue-white — main background
+  surface:      '#FFFFFF', // cards, inputs, tab bar
+  primary:      '#1A66D9', // brand blue — buttons, active icons
+  primaryDeep:  '#0D47A1', // dark blue — top bar, welcome screen
+  primarySoft:  '#E4EEFC', // pale blue — chip backgrounds, icon badges
+  ink:          '#0F2238', // near-black — main text
+  muted:        '#5B7088', // grey — secondary text, inactive icons
+  border:       '#D9E6F5', // light blue — input borders, dividers
+
+  safe:    '#1E9E5A', safeBg:    '#DCF5E6', // green — "Safe" verdict
+  warn:    '#E08A00', warnBg:    '#FFF3D6', // orange — "Be careful"
+  danger:  '#D63B3B', dangerBg:  '#FCE3E3', // red — "Likely scam"
+};
+
+const SHADOW = Platform.select({
+  ios:     { shadowColor: '#0D2A5B', shadowOpacity: 0.12, shadowRadius: 12,
+             shadowOffset: { width: 0, height: 6 } },
+  android: { elevation: 4 },
+  default: {},
+});</pre>
+
+<p>
+<code>Platform.select()</code> returns a different object depending on the operating system.
+iOS uses four CSS-like shadow properties. Android uses a single <code>elevation</code> number
+(the Android Material Design shadow system). On web/other, no shadow is applied.
+This <code>SHADOW</code> object is spread (<code>...SHADOW</code>) into card styles throughout the app.
+</p>
+
+<hr/>
+
+<h3>4.6 Icon Component (Lines 143–212)</h3>
+
+<pre>function Icon({ name, size = 24, color = C.muted }) {
+  const box = { width: size, height: size, alignItems: 'center', justifyContent: 'center' };
+  const stroke = Math.max(2, size * 0.1);
+
+  switch (name) {
+    case 'home':   return ( /* triangle roof + rectangle body */ );
+    case 'search': return ( /* circle + diagonal handle */ );
+    case 'chat':   return ( /* rounded rectangle + tail triangle */ );
+    case 'shield': return ( /* pointed-bottom rectangle */ );
+    // ...
+  }
+}</pre>
+
+<p>
+Instead of importing an icon library (which would add megabytes to the app bundle),
+every icon is <strong>drawn from plain <code>&lt;View&gt;</code> elements</strong> using borders, border-radius,
+absolute positioning, and CSS border tricks.
+</p>
+
+<table>
+  <tr><th>Icon Name</th><th>How It Is Drawn</th></tr>
+  <tr><td><code>home</code></td><td>A zero-width/height View with transparent left/right borders creates a CSS triangle (the roof). A rectangle below it forms the house body.</td></tr>
+  <tr><td><code>search</code></td><td>A circle drawn with <code>borderWidth</code> + <code>borderRadius: 50%</code>. A rotated rectangle forms the magnifier handle at 45°.</td></tr>
+  <tr><td><code>chat</code></td><td>A rounded rectangle (speech bubble) + a triangle positioned at the bottom-left using the zero-size border trick (the tail).</td></tr>
+  <tr><td><code>learn</code></td><td>A rectangle (book cover) with a thin white vertical line through the center (the spine).</td></tr>
+  <tr><td><code>community</code></td><td>Two small circles (heads) positioned top-left and top-right, with a wide arc shape below (the shoulders).</td></tr>
+  <tr><td><code>mail</code></td><td>A bordered rectangle (envelope body) + a downward triangle at the top (the flap fold).</td></tr>
+  <tr><td><code>shield</code></td><td>A rectangle with round top corners and pointed bottom corners using different border-radius values per corner.</td></tr>
+  <tr><td><code>cart</code></td><td>A diagonal line (handle), a bordered box with rounded bottom (basket), two small circles at the bottom (wheels).</td></tr>
+</table>
+
+<hr/>
+
+<h3>4.7 Translations — STR Object (Lines 217–385)</h3>
+
+<pre>const STR = {
+  np: {
+    appName: 'SmartCart',
+    tagline: 'पैसा तिर्नु अघि जाँच गर्नुहोस्',
+    loginBtn: 'लग-इन गर्नुहोस्',
+    checkBtn: 'जाँच गर्नुहोस्',
+    vDanger:  'ठगी हुनसक्छ',
+    // ... 100+ keys
+  },
+  en: {
+    appName: 'SmartCart',
+    tagline: 'Check before you pay',
+    loginBtn: 'Log in',
+    checkBtn: 'Check now',
+    vDanger:  'Likely scam',
+    // ... same 100+ keys in English
+  },
+};</pre>
+
+<p>
+Every visible string in the entire app — every button label, hint, error message, screen title, tab name —
+exists in both Nepali (<code>np</code>) and English (<code>en</code>).
+</p>
+<p>
+The active language is stored as <code>lang</code> state (<code>'np'</code> or <code>'en'</code>).
+In the App root: <code>const t = useMemo(() =&gt; STR[lang], [lang]);</code>
+<code>t</code> is then passed as a prop to every screen.
+Every text element uses <code>{t.someKey}</code> so switching language instantly updates all text.
+</p>
+
+<hr/>
+
+<h3>4.8 Scam Detection Algorithm — detectRisk() (Lines 413–447)</h3>
+
+<p>This is the <strong>core feature</strong> of the entire app. It analyzes text for scam indicators.</p>
+
+<pre>function detectRisk(raw) {
+  const t = (raw || '').toLowerCase(); // Step 1: normalize input to lowercase
+  if (!t.trim()) return null;          // empty input: nothing to check
+
+  const reasons = new Set();
+  let danger = 0, warn = 0, safe = 0;
+
+  const has = (...words) => words.some((w) => t.includes(w)); // helper</pre>
+
+<h4>Step 1 — Keyword Matching Rules</h4>
+<table>
+  <tr><th>Rule</th><th>Keywords Checked (English + Nepali)</th><th>Points Added</th></tr>
+  <tr><td>OTP request</td><td><code>otp</code>, <code>ओटिपी</code>, <code>one time</code>, <code>code</code>, <code>कोड</code></td><td>+2 danger</td></tr>
+  <tr><td>Advance payment</td><td><code>advance</code>, <code>deposit</code>, <code>पेशकी</code>, <code>अग्रिम</code>, <code>pay first</code>, <code>पहिले</code></td><td>+2 danger</td></tr>
+  <tr><td>Personal account</td><td><code>personal account</code>, <code>esewa</code>, <code>khalti</code>, <code>खातामा</code>, <code>account number</code></td><td>+2 warn</td></tr>
+  <tr><td>Prize / lottery</td><td><code>won</code>, <code>winner</code>, <code>prize</code>, <code>lottery</code>, <code>इनाम</code>, <code>लटरी</code>, <code>जित</code></td><td>+2 danger</td></tr>
+  <tr><td>Unrealistically cheap</td><td><code>90% off</code>, <code>95% off</code>, <code>free iphone</code>, <code>सस्तो</code>, <code>rs 100</code></td><td>+1 warn</td></tr>
+  <tr><td>Shortened / hidden link</td><td><code>bit.ly</code>, <code>tinyurl</code>, <code>t.me</code>, <code>wa.me</code>, <code>cutt.ly</code></td><td>+2 warn</td></tr>
+  <tr><td>Urgency language</td><td><code>today only</code>, <code>hurry</code>, <code>urgent</code>, <code>आज मात्र</code>, <code>तुरुन्तै</code></td><td>+1 warn</td></tr>
+  <tr><td>COD mentioned</td><td><code>cash on delivery</code>, <code>cod</code>, <code>डेलिभरी</code></td><td>+2 safe</td></tr>
+  <tr><td>Known platform</td><td><code>daraz</code>, <code>sastodeal</code>, <code>verified</code>, <code>प्रमाणित</code></td><td>+2 safe</td></tr>
+  <tr><td>Nepal phone number</td><td>Regex <code>/\b9[678]\d{8}\b/</code> (98XXXXXXXX format)</td><td>+1 warn</td></tr>
+</table>
+
+<h4>Step 2 — Verdict Decision</h4>
+<pre>let level = 'warn'; // default assumption: be careful
+
+if (danger >= 2)                              level = 'danger'; // confirmed scam signals
+else if (safe >= 2 &amp;&amp; danger === 0 &amp;&amp; warn === 0) level = 'safe';  // only safe signals
+else if (danger === 0 &amp;&amp; warn === 0 &amp;&amp; safe === 0) {
+  level = 'warn';
+  reasons.add('none'); // "no clear danger found"
+}</pre>
+
+<table>
+  <tr><th>Condition</th><th>Verdict</th><th>Color</th><th>Label</th></tr>
+  <tr><td>2 or more danger points</td><td><code>"danger"</code></td><td>Red</td><td>⛔ Likely Scam</td></tr>
+  <tr><td>2+ safe, zero danger, zero warn</td><td><code>"safe"</code></td><td>Green</td><td>✅ Safe</td></tr>
+  <tr><td>Anything else (mixed signals)</td><td><code>"warn"</code></td><td>Orange</td><td>⚠️ Be Careful</td></tr>
+  <tr><td>Nothing matched at all</td><td><code>"warn"</code></td><td>Orange</td><td>⚠️ Be Careful</td></tr>
+</table>
+
+<h4>Step 3 — Recommended Actions</h4>
+<pre>const actions = [];
+if (reasons.has('otp'))                       actions.push('noOtp');         // "Never share OTP"
+if (reasons.has('advance') || reasons.has('personalAcc')) actions.push('cod'); // "Choose COD"
+actions.push('verify');                                                        // always: "Check reports"
+if (level !== 'safe')                         actions.push('trustedPlatform');// "Use Daraz"
+if (level === 'danger')                       actions.push('report');          // "Report to police"
+if (level === 'safe')                         actions.push('ok');              // "Looks okay"</pre>
+
+<p>
+The function returns: <code>{ level, reasons: [...], actions: [...] }</code><br/>
+The Check screen renders this as: a colored VerdictCard banner → bullet-point reasons → action steps.
+</p>
+
+<hr/>
+
+<h3>4.9 Conversational Helper — getReply() (Lines 513–574)</h3>
+
+<p>
+The chatbot logic follows a <strong>priority chain</strong> — each step is checked in order,
+and the first match wins:
+</p>
+
+<div class="algorithm-box">Input text
+  │
+  Step 1 → Is it a greeting? (hi, hello, namaste, नमस्ते...)
+  │         → Return: "Hello! How can I help you shop safely?"
+  │
+  Step 2 → Is it a thank-you? (thanks, dhanyabad, धन्यवाद...)
+  │         → Return: "You're welcome! Stay safe."
+  │
+  Step 3 → Is it asking for help/guide?
+  │         → Return: list of what the bot can do
+  │
+  Step 4 → Does it look like a scam to check?
+  │         (URL, phone number, or scam keywords present)
+  │         → Run detectRisk() → return verdict + reasons + actions
+  │
+  Step 5 → Does it match a FAQ topic?
+  │         (loop through 9 FAQ entries, check keywords)
+  │         → Return: the FAQ answer for that topic
+  │
+  Step 6 → Fallback
+            → Return: generic "here's what I can do" message</div>
+
+<h4>looksCheckable() — Decides if Input Should Be Scam-Checked</h4>
+<pre>function looksCheckable(t) {
+  return (
+    /https?:\/\//.test(t)                      || // has a URL (http:// or https://)
+    /\b(bit\.ly|tinyurl|t\.me|wa\.me)\b/.test(t) || // shortened link
+    /\b9[678]\d{8}\b/.test(t)                  || // Nepal phone number
+    /(otp|advance|prize|esewa|khalti|...)/i.test(t) // scam keywords
+  );
+}</pre>
+
+<h4>FAQ Knowledge Base — 9 Topics</h4>
+<table>
+  <tr><th>Topic</th><th>Keywords That Trigger It</th></tr>
+  <tr><td>COD / Cash on Delivery</td><td>cod, cash on delivery, डेलिभरी, नगद, after delivery</td></tr>
+  <tr><td>OTP / PIN safety</td><td>otp, ओटिपी, pin, verification code, कोड</td></tr>
+  <tr><td>How to pay safely</td><td>pay safely, how to pay, payment, तिर्ने, भुक्तानी</td></tr>
+  <tr><td>Which platforms are safe</td><td>daraz, platform, sastodeal, which app, website safe</td></tr>
+  <tr><td>How to report a scam</td><td>report, scammed, ठगियो, cyber, cheated, complain</td></tr>
+  <tr><td>Fake / original products</td><td>fake, original, नक्कली, genuine product, copy</td></tr>
+  <tr><td>Is this seller real?</td><td>trust, seller safe, बिक्रेता, genuine seller, is this seller</td></tr>
+  <tr><td>Refunds / returns</td><td>refund, return, फिर्ता, money back, paisa firta</td></tr>
+  <tr><td>Fake delivery SMS</td><td>delivery, parcel, पार्सल, not received, track</td></tr>
+</table>
+
+<hr/>
+
+<h3>4.10 Learn Content — LESSONS (Lines 579–584)</h3>
+
+<pre>const LESSONS = [
+  {
+    icon: '👟',
+    np: { t: 'नक्कली ब्रान्डेड जुत्ता',   b: 'धेरै सस्तोमा "original" ब्रान्ड...' },
+    en: { t: 'Fake branded shoes',          b: 'Pages selling "original" brands very cheap...' }
+  },
+  { icon: '🎁', ... }, // Prize/lottery messages
+  { icon: '📦', ... }, // Fake parcel SMS
+  { icon: '☎️', ... }, // Fake customer-care numbers
+];</pre>
+
+<p>
+Four educational lesson cards. Each has an emoji icon, a Nepali title + body, and an English title + body.
+The <code>LearnScreen</code> renders them by mapping over this array:
+<code>LESSONS.map((l, i) =&gt; &lt;LessonCard key={i} data={l} lang={lang} /&gt;)</code>
+</p>
+
+<hr/>
+
+<h3>4.11 Screen Components</h3>
+
+<h4>Welcome Screen (Lines 620–652)</h4>
+<p>
+Shown once on first launch before the user logs in.
+Displays the app name, tagline, and a short description.
+Offers two buttons to choose language (Nepali / English).
+A "Get started" button calls <code>onDone()</code> which sets <code>seenWelcome = true</code> → navigates to Login.
+</p>
+
+<h4>Login Screen (Lines 654–734)</h4>
+<ul>
+  <li>Manages two modes with one <code>mode</code> state variable: <code>'login'</code> or <code>'signup'</code></li>
+  <li>Sign-up mode shows an extra Name field</li>
+  <li>On submit: calls Firebase <code>createUserWithEmailAndPassword</code> or <code>signInWithEmailAndPassword</code></li>
+  <li>Errors caught in <code>catch(e)</code> are passed through <code>authError(e.code, lang)</code> for friendly bilingual messages</li>
+  <li><code>busy</code> state disables the button and shows a spinner while Firebase responds</li>
+  <li>"Continue as guest" bypasses Firebase entirely and sets <code>guest = true</code></li>
+  <li><code>KeyboardAvoidingView</code> with <code>behavior="padding"</code> on iOS prevents the keyboard from hiding inputs</li>
+</ul>
+
+<h4>Home Screen (Lines 744–777)</h4>
+<ul>
+  <li>Displays a greeting: "Hello, [name] 👋"</li>
+  <li>Renders a 2-column grid of 5 feature cards (Scam Check, Helper, Learn, Report, Contact)</li>
+  <li>Each card's <code>onPress</code> calls <code>go(key)</code> → <code>setTab(key)</code> to navigate to that screen</li>
+  <li>A daily safety tip card at the bottom (static text from translations)</li>
+</ul>
+
+<h4>CheckScreen (Lines 779–835)</h4>
+<ul>
+  <li>User types or pastes text into a large multiline <code>TextInput</code></li>
+  <li>"Check" button calls <code>detectRisk(input)</code> and stores result in <code>result</code> state</li>
+  <li>"Clear" button resets both <code>input</code> and <code>result</code> to empty</li>
+  <li>When <code>result</code> is not null, renders:
+    <ul>
+      <li><strong>VerdictCard</strong> — colored banner (green / orange / red) with emoji and label</li>
+      <li><strong>Reasons list</strong> — bullet points explaining why the text is risky</li>
+      <li><strong>Actions list</strong> — what to do next (choose COD, don't share OTP, report, etc.)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>ChatScreen (Lines 837–895)</h4>
+<ul>
+  <li>Maintains a <code>msgs</code> array: each entry is <code>{ from: 'user'|'bot', text, level }</code></li>
+  <li><code>send()</code> function:
+    <ol>
+      <li>Takes the input text</li>
+      <li>Calls <code>getReply(text, lang)</code> to get the bot's response</li>
+      <li>Appends both the user message and bot reply to <code>msgs</code></li>
+      <li>Clears the input field</li>
+      <li>Waits 80ms then auto-scrolls to the bottom using <code>scrollRef.current.scrollToEnd()</code></li>
+    </ol>
+  </li>
+  <li>Bot messages with a scam verdict get a colored left border (red/orange/green)</li>
+  <li>User messages are shown on the right (blue background), bot messages on the left (white)</li>
+</ul>
+
+<h4>LearnScreen (Lines 897–912)</h4>
+<p>
+Read-only educational screen. Maps over the <code>LESSONS</code> array and renders each as a card
+with an emoji icon, bold title, and descriptive body text. No interactivity.
+</p>
+
+<h4>ReportScreen (Lines 914–1016)</h4>
+<p>This screen uses <strong>Firebase Realtime Database</strong>. Key logic:</p>
+
+<pre>// Live subscription — runs when screen mounts
+useEffect(() => {
+  if (!db) { setLive([]); return; }
+  const q = query(dbRef(db, 'reports'), limitToLast(50)); // last 50 reports
+  const unsub = onValue(q, (snap) => {
+    const val = snap.val() || {};
+    const arr = Object.entries(val)           // convert object to array
+      .map(([id, v]) => ({ id, ...v }))
+      .sort((a, b) => (b.ts || 0) - (a.ts || 0)); // newest first
+    setLive(arr);
+  }, () => setLive([])); // on error, show empty
+  return () => unsub(); // unsubscribe when screen unmounts
+}, []);</pre>
+
+<ul>
+  <li><code>onValue</code> is a real-time listener — whenever someone submits a new report anywhere,
+    all connected users' screens update automatically within seconds</li>
+  <li>The Firebase data is an object keyed by auto-generated push IDs. <code>Object.entries()</code>
+    converts it to an array, sorted by timestamp (newest first)</li>
+  <li>If Firebase is unavailable, fallback sample reports are shown</li>
+  <li>Submit form: <code>push(dbRef(db, 'reports'), {...})</code> adds a new entry with seller name,
+    description, risk level, reporter identity, and current timestamp</li>
+</ul>
+
+<h4>ContactScreen (Lines 1018–1070)</h4>
+<ul>
+  <li>4 contact info rows: email, phone, address, office hours</li>
+  <li>Email row: <code>Linking.openURL('mailto:support@smartcart.np')</code> opens the device's email app</li>
+  <li>Phone row: <code>Linking.openURL('tel:+97714000000')</code> opens the device's phone dialer</li>
+  <li>Message form shows a "Thank you" message on submit (UI only — no real backend submission)</li>
+</ul>
+
+<hr/>
+
+<h3>4.12 TabBar Navigation (Lines 1075–1098)</h3>
+
+<pre>function TabBar({ tab, setTab, t }) {
+  const tabs = [
+    { key: 'home',    icon: 'home',      label: t.tabHome },
+    { key: 'check',   icon: 'search',    label: t.tabCheck },
+    { key: 'chat',    icon: 'chat',      label: t.tabChat },
+    { key: 'learn',   icon: 'learn',     label: t.tabLearn },
+    { key: 'report',  icon: 'community', label: t.tabReport },
+    { key: 'contact', icon: 'mail',      label: t.tabContact },
+  ];
+  // ...renders each tab as a TouchableOpacity
+}</pre>
+
+<p>
+<strong>Navigation pattern:</strong> There is <strong>no router library</strong> used.
+Tab navigation is simply a <code>tab</code> state variable in <code>App</code>.
+The <code>TabBar</code> calls <code>setTab(key)</code> on press, and <code>App</code> renders
+the matching screen with:
+</p>
+
+<pre>{tab === 'home'    &amp;&amp; &lt;Home t={t} go={setTab} name={userName} /&gt;}
+{tab === 'check'   &amp;&amp; &lt;CheckScreen t={t} lang={lang} /&gt;}
+{tab === 'chat'    &amp;&amp; &lt;ChatScreen t={t} lang={lang} /&gt;}
+{tab === 'learn'   &amp;&amp; &lt;LearnScreen t={t} lang={lang} /&gt;}
+{tab === 'report'  &amp;&amp; &lt;ReportScreen t={t} lang={lang} /&gt;}
+{tab === 'contact' &amp;&amp; &lt;ContactScreen t={t} /&gt;}</pre>
+
+<p>
+The active tab shows a small blue dot indicator below its icon (<code>tabDot</code>).
+Inactive tabs show an invisible spacer (<code>tabDotSpace</code>) of the same size so the layout
+doesn't shift when tabs become active/inactive.
+</p>
+
+<hr/>
+
+<h3>4.13 App Root — Main Logic (Lines 1103–1191)</h3>
+
+<pre>export default function App() {
+  const [lang, setLang]         = useState('np');    // 'np' (Nepali) or 'en' (English)
+  const [booting, setBooting]   = useState(true);   // checking Firebase session
+  const [user, setUser]         = useState(null);    // Firebase user object
+  const [guest, setGuest]       = useState(false);   // guest mode bypass
+  const [seenWelcome, setSeen]  = useState(false);   // first-launch welcome
+  const [tab, setTab]           = useState('home');  // active tab
+
+  const t = useMemo(() => STR[lang], [lang]); // cached translations</pre>
+
+<h4>Authentication State Flow</h4>
+<div class="algorithm-box">App opens
+  │
+  ▼
+[booting = true] → Show splash screen with spinner
+  │
+  ▼
+Firebase onAuthStateChanged fires automatically
+  │
+  ├─ User session found → setUser(user) → booting=false
+  │                     → Skip welcome + login → go straight to Main App
+  │
+  └─ No session → setUser(null) → booting=false
+                → Show Welcome screen (language picker)
+                → Then show Login screen</div>
+
+<h4>Screen Routing Logic</h4>
+<table>
+  <tr><th>Condition</th><th>Screen Shown</th></tr>
+  <tr><td><code>booting === true</code></td><td>Splash screen (app icon + spinner)</td></tr>
+  <tr><td><code>!user &amp;&amp; !guest &amp;&amp; !seenWelcome</code></td><td>Welcome screen (language picker)</td></tr>
+  <tr><td><code>!user &amp;&amp; !guest</code></td><td>Login / Sign-up screen</td></tr>
+  <tr><td><code>user || guest</code></td><td>Main app (top bar + active screen + tab bar)</td></tr>
+</table>
+
+<h4>Logout Logic</h4>
+<pre>const logout = () => {
+  if (auth) signOut(auth).catch(() => {});
+  setGuest(false);
+  setSeenWelcome(true); // skip welcome splash, go straight to Login
+  setTab('home');        // reset to home tab for next login
+};</pre>
+
+<h4>Language Toggle</h4>
+<pre>const toggleLang = () => setLang((l) => (l === 'np' ? 'en' : 'np'));</pre>
+<p>
+Switches between Nepali and English by flipping the <code>lang</code> state.
+Since <code>t = useMemo(() =&gt; STR[lang], [lang])</code>, the entire UI instantly
+re-renders with all text in the new language — no page reload needed.
+</p>
+
+<hr/>
+
+<h3>4.14 StyleSheet (Lines 1196–1342)</h3>
+
+<p>
+All styling uses React Native's <code>StyleSheet.create({})</code> — JavaScript objects, not CSS files.
+Key differences from web CSS:
+</p>
+
+<table>
+  <tr><th>CSS Property</th><th>React Native Equivalent</th><th>Notes</th></tr>
+  <tr><td><code>background-color: #fff</code></td><td><code>backgroundColor: '#fff'</code></td><td>camelCase, value is a string</td></tr>
+  <tr><td><code>border-radius: 16px</code></td><td><code>borderRadius: 16</code></td><td>no units — always device pixels</td></tr>
+  <tr><td><code>display: flex</code></td><td>(omit — flex is the default)</td><td>All Views are flex containers by default</td></tr>
+  <tr><td><code>flex-direction: row</code></td><td><code>flexDirection: 'row'</code></td><td>default is 'column' (top to bottom)</td></tr>
+  <tr><td><code>font-weight: bold</code></td><td><code>fontWeight: '700'</code></td><td>must be a string, not a number</td></tr>
+  <tr><td><code>margin: 0 auto</code></td><td>(no auto margins)</td><td>use <code>alignSelf: 'center'</code> instead</td></tr>
+  <tr><td><code>position: absolute</code></td><td><code>position: 'absolute'</code></td><td>same concept, string value</td></tr>
+  <tr><td><code>padding: 10px 16px</code></td><td><code>paddingVertical: 10, paddingHorizontal: 16</code></td><td>no shorthand for mixed values</td></tr>
+</table>
+
+<p>
+The <code>StyleSheet.create()</code> wrapper (vs a plain object) provides a small performance optimization:
+React Native validates and optimizes the styles at load time rather than at every render.
+</p>
+
+<hr class="section-divider"/>
+
+<h2>5. Algorithm Summary (Visual)</h2>
+
+<div class="algorithm-box">USER TYPES TEXT INTO CHECK SCREEN OR CHAT
+                    │
+                    ▼
+           detectRisk(text)
+                    │
+         ┌─ normalize to lowercase
+         │
+         ├─ KEYWORD SCAN (10 rules, each adds points):
+         │    otp/code found?          danger += 2
+         │    advance payment?         danger += 2
+         │    personal account?        warn   += 2
+         │    prize/lottery?           danger += 2
+         │    too cheap?               warn   += 1
+         │    shortened link?          warn   += 2
+         │    urgency language?        warn   += 1
+         │    COD mentioned?           safe   += 2
+         │    known platform?          safe   += 2
+         │    Nepal phone number?      warn   += 1
+         │
+         ├─ VERDICT DECISION:
+         │    danger ≥ 2                  →  "danger"  (⛔ red)
+         │    safe ≥ 2, no danger/warn    →  "safe"    (✅ green)
+         │    else                        →  "warn"    (⚠️ orange)
+         │
+         └─ BUILD OUTPUT:
+              reasons[]  — why it's risky (bullet points)
+              actions[]  — what to do next
+                    │
+                    ▼
+          UI RENDERS RESULT:
+          ┌─────────────────────────────┐
+          │   ⛔  Likely Scam  (red)    │
+          └─────────────────────────────┘
+          • Asks for OTP — banks never ask for OTP
+          • Demands advance payment before sending item
+
+          🚫 Never share your OTP with anyone
+          ✅ Choose Cash on Delivery instead
+          📢 Report to Nepal Police Cyber Bureau</div>
+
+<hr class="section-divider"/>
+
+<h2>6. Key Technical Decisions</h2>
+
+<table>
+  <tr><th>Decision</th><th>Why It Was Made</th></tr>
+  <tr><td>Single <code>App.js</code> file (1343 lines)</td><td>Can be pasted directly into Expo Snack (snack.expo.dev) and run instantly without any setup. Great for demos and learning.</td></tr>
+  <tr><td>No router library</td><td>A simple <code>tab</code> state variable is enough for 6 screens. Saves one dependency and keeps navigation trivially understandable.</td></tr>
+  <tr><td>No icon library</td><td>Icons drawn from plain <code>&lt;View&gt;</code> elements = zero bundle size overhead. No additional npm package to install or update.</td></tr>
+  <tr><td>Rule-based scam detection</td><td>No machine learning or external API needed. Works completely offline. Fast (runs instantly). Easy to understand and explain to users. Easy to add new rules.</td></tr>
+  <tr><td>Firebase fallback to local mode</td><td>The app still fully works (scam check, chat, learn, contact) even if Firebase is unavailable, misconfigured, or the user has no internet.</td></tr>
+  <tr><td>Bilingual <code>STR</code> object</td><td>All UI text in one place. Switching language is a single state change. Easy to add a third language (e.g., Maithili) by adding a new key.</td></tr>
+  <tr><td><code>useMemo</code> for translations</td><td>The translation lookup <code>STR[lang]</code> only re-runs when <code>lang</code> changes — not on every state update or re-render.</td></tr>
+  <tr><td>Guest mode</td><td>Users can use all features without creating an account. Only community reports require Firebase (and even those fall back to sample data).</td></tr>
+  <tr><td>Platform-specific shadows</td><td>iOS and Android have fundamentally different shadow systems. <code>Platform.select()</code> applies the correct approach for each OS automatically.</td></tr>
+</table>
+
+<hr class="section-divider"/>
+
+<p style="color: #5B7088; font-size: 10pt; text-align: center; margin-top: 40px;">
+  SmartCart — Code Explanation Document &nbsp;|&nbsp; Generated for academic reference
+</p>
+
+</body>
+</html>
